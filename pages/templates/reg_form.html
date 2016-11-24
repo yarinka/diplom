@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Testing System</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<link href="css/styles.css" rel="stylesheet">
+		
+
+	</head>
+	<body>
+		<center>
+		<div id="header">
+			<!--<img src="img/Untitled2.png" id="logo"></img>
+			<img src="img/Untitled.png" id="logo2"></img>-->
+			
+			
+			
+			<h1>Testing System</h1>
+			<h5>Киев</h5>
+			
+		</div>
+		
+		<div id="main">
+            <h3 style="color:red"><?=$v['error']?></h3>
+			<form action="index.php?page=register" method="post">
+				 <p><b>Регистрация в Test4success</b></p>
+				 <p><input type="text" name="login" value="<?=$v['login']?>" placeholder="login" ><Br>
+				 <input type="password" name="password" value="<?=$v['password']?>" placeholder="password" ><Br>
+				 <input type="password" name="password2" value="<?=$v['password2']?>" placeholder="retype password" ><Br>
+				 <p><input type="submit"></p>
+                 <input type="hidden" name="submitted" value="true" />
+				 </hr>
+			</form>
+			
+		</div>
+		</center>
+
+	</body>
+</html>

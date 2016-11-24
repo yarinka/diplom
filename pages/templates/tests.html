@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Testing System</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<link href="css/styles.css" rel="stylesheet">
+		
+
+	</head>
+	<body>
+		<center>
+		<div id="header">
+			<!--<img src="img/Untitled2.png" id="logo"></img>
+			<img src="img/Untitled.png" id="logo2"></img>-->
+			
+            <?if($v['user_logged_in']):?>
+                <div id="user_name" style="float:right;"><?=$v['user_login']?></div>
+            <?endif?>
+			
+			
+			<div>
+				<h1>Testing System</h1>
+				<h5>Киев</h5>
+			</div>
+			
+		</div>
+		
+		<div id="main">
+            <a href="index.php?page=main">На главную</a></br></br>
+			<p>Список тестов</p>
+			<table id="tests" border="1" style="border-color:black;">
+				<title>Доступные тесты</title>
+                <?foreach($v['tests'] as $name=>$key):?>
+                    <tr><td><a href="index.php?page=run_test&test=<?=$key?>"><?=$name?></a></td></tr>
+                <?endforeach?>
+			</table>
+			
+		</div>
+		</center>
+
+	</body>
+</html>

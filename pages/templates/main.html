@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Testing System</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<link href="css/styles.css" rel="stylesheet">
+		
+
+	</head>
+	<body>
+		<center>
+		<div id="header">
+			<!--<img src="img/Untitled2.png" id="logo"></img>
+			<img src="img/Untitled.png" id="logo2"></img>-->
+			
+			
+			
+			<h1>Testing System</h1>
+			<h5>Киев</h5>
+			
+		</div>
+		
+		<div id="main">
+            <?if($v['user_logged_in']):?>
+                <h3 style="text-align:right; margin-right:100px; color:blue;">User: <?=$v['user_login']?></h3>
+            <?endif?>
+            <h3 style="color:green"><?=$v['message']?></h3>
+            <?if($v['user_logged_in']):?>
+                <a href="index.php?page=logout"><p><b>Выход</b></p></a>
+                <a href="index.php?page=tests"><p><b>Тесты</b></p></a>
+            <?else:?>
+                <a href="index.php?page=login"><p><b>Вход</b></p></a>
+                <a href="index.php?page=register"><p><b>Регистрация</b></p></a>
+			<?endif?>
+		</div>
+		</center>
+
+	</body>
+</html>

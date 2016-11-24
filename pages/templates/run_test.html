@@ -9,7 +9,7 @@
         <script>
         $(document).ready(function() {
             load_question(1);
-            for (var i = 1; i <= 4; i++) {
+            for (var i = 1; i <= <?=sizeof($v['questions'])?>; i++) {
                 (function(i) {
                     $("#test" + i).click(function(){
                         load_question(i);
@@ -17,13 +17,20 @@
                 })(i);
             }
         });
+        var current_number = 0;
         function load_question(number) {
+            current_number = number;
             $.ajax({
-                url: 'http://test/ajax_test_' + number + '.html',
+                url: 'index.php?page=get_test&test_id=' + number,
                 success: function(data) {
                     $('#question_body').html(data);
                 }
             });
+        }
+        function answer_submitted() {
+            if (current_number < <?=sizeof($v['questions'])?>) {
+                load_question(current_number + 1);
+            }
         }
         </script>
 		
@@ -38,7 +45,9 @@
 			<!--<script src="http://megatimer.ru/s/87d5123d4928c95cdf11048670a53bfa.js"></script>-->
 			<!--<script src="http://megatimer.ru/s/87d5123d4928c95cdf11048670a53bfa.js"></script>-->
 			<script src="js/timer.js"></script>
-			<div id="user_name" style="float:right;">User_name</div>
+			<?if($v['user_logged_in']):?>
+                <div id="user_name" style="float:right;"><?=$v['user_login']?></div>
+            <?endif?>
 			<div>
 				<h1>Test_name</h1>
 			
@@ -47,11 +56,11 @@
 		</div>
 		
 		<div id="main">
+        <a href="index.php?page=main">На главную</a></br></br>
 			</br>
-            <a href="#" id="test1">1</a>
-            <a href="#" id="test2">2</a>
-            <a href="#" id="test3">3</a>
-            <a href="#" id="test4">4</a>
+            <?foreach($v['questions'] as $i=>$key):?>
+            <a href="#" id="test<?=$i + 1?>"><?=$key?></a>
+            <?endforeach?>
             </br>
             </br>
 			<div id="question_body">

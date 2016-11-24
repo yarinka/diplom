@@ -1,0 +1,19 @@
+﻿<script>
+    $(document).ready(function() {
+        $('#submit').click(function(){
+            $.ajax({
+                url: 'index.php?page=submit_test&test_id=' + <?=$v['test_id']?> + '&answer=' + encodeURI($('#answer').val()),
+                success: function(data) {
+                    // For debug purposes.
+                    alert(data);
+                    answer_submitted();
+                }
+            });
+        });
+    });
+</script>
+<div>
+<h3 style="color=green"><?=$v['question']?></h3>
+<input type="text" id="answer"/><br/>
+<input type="button" id="submit" value="Submit">
+</div>

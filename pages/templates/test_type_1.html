@@ -1,0 +1,28 @@
+﻿<script>
+    $(document).ready(function() {
+        $('#submit').click(function(){
+            var answerString = '';
+            for (var i=0; i<<?=sizeof($v['answers'])?>; i++) {
+                answerString += 'answers[]' + "=" + $('#variant_' + i).prop('checked');
+                if (i !== <?=sizeof($v['answers']) - 1?>) {
+                    answerString += "&";
+                }
+            }
+            $.ajax({
+                url: 'index.php?page=submit_test&test_id=' + <?=$v['test_id']?> + '&' + answerString,
+                success: function(data) {
+                    // For debug purposes.
+                    alert(data);
+                    answer_submitted();
+                }
+            });
+        });
+    });
+</script>
+<div>
+<h3 style="color=green"><?=$v['question']?></h3>
+<?foreach($v['answers'] as $i=>$answer):?>
+    <input type="checkbox" id="variant_<?=$i?>" /><span><?=$answer?></span><br/>
+<?endforeach?>
+<input type="button" id="submit" value="Submit">
+</div>
